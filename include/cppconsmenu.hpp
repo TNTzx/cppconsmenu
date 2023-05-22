@@ -164,6 +164,14 @@ namespace ConsMenu {
             SelectMenu();
 
             /*
+            Adds a choice.
+            */
+            template <class T>
+            void add_choice() {
+                this->choices.push_back(std::make_unique<T>(T()));
+            }
+
+            /*
             Adds the opening and closing brackets to a tag.
             Ex. "x" -> "[x]"
             */
