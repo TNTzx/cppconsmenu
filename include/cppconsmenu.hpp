@@ -190,8 +190,4 @@ namespace ConsMenu {
 
             void show() override;
     };
-    std::string SelectMenu::back_tag = "x";
-    std::string SelectMenu::exit_tag = "xx";
-    std::string SelectMenu::tag_open_br = "[";
-    std::string SelectMenu::tag_close_br = "]:";
 };
