@@ -1,9 +1,3 @@
-#ifndef MENU_EXCS
-#define MENU_EXCS
-
-
-#include <exception>
-
 #include "./excs.hpp"
 
 
@@ -13,41 +7,16 @@ namespace ConsMenu {
     Contains the exceptions used.
     */
     namespace MenuExc {
-        class BaseMenuExc : public std::exception {
-            public:
-                const char* what() const noexcept override {return "Base menu exception.";}
-        };
+        const char* BaseMenuExc::what() const noexcept {return "Base menu exception.";}
 
+            const char* MenuExit::what() const noexcept {return "Exited from menu.";}
 
-            //Raised whenever all the menus are exited.
-            class MenuExit : public BaseMenuExc {
-                public:
-                    const char* what() const noexcept override {return "Exited from menu.";}
-            };
+            const char* MenuChExit::what() const noexcept {return "Exited from choice menu.";}
 
-            class MenuChExit : public BaseMenuExc {
-                public:
-                    const char* what() const noexcept override {return "Exited from choice menu.";}
-            };
+            const char* MenuChInvalidInput::what() const noexcept {return "Invalid choice input.";}
 
+                const char* MenuChInputNotTag::what() const noexcept {return "Input is not a valid tag.";}
 
-            class MenuChInvalidInput : public BaseMenuExc {
-                public:
-                    const char* what() const noexcept override {return "Invalid choice input.";}
-            };
-
-                class MenuChInputNotTag : public MenuChInvalidInput {
-                    public:
-                        const char* what() const noexcept override {return "Input is not a valid tag.";}
-                };
-
-                class MenuChInputInvalidTag : public MenuChInvalidInput {
-                    public:
-                        const char* what() const noexcept override {return "Input is not a tag listed in the choices.";}
-                };
+                const char* MenuChInputInvalidTag::what() const noexcept {return "Input is not a tag listed in the choices.";}
     };
 };
-
-
-
-#endif

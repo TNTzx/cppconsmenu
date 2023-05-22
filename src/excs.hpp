@@ -1,3 +1,10 @@
+#pragma once
+
+
+#include <exception>
+
+
+
 namespace ConsMenu {
     /*
     Contains the exceptions used.
