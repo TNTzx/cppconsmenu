@@ -9,14 +9,11 @@ project(cppconsmenu VERSION 1.0)
 set(
     SOURCES
     src/excs.cpp
-    src/excs.hpp
     src/menu_choice.cpp
-    src/menu_choice.hpp
     src/menus.cpp
-    src/menus.hpp
     src/screen.cpp
-    src/screen.hpp
 )
 
 add_library(cppconsmenu STATIC ${SOURCES})
+add_subdirectory(external)
 target_include_directories(cppconsmenu PUBLIC ${CMAKE_CURRENT_LIST_DIR}/include)

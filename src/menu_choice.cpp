@@ -9,11 +9,9 @@
 #include <vector>
 #include <memory>
 
-#include "./menu_choice.hpp"
+#include "cppconsmenu.hpp"
 
-#include "cpputils"
-#include "menus.hpp"
-#include "excs.hpp"
+#include "cpputils.hpp"
 
 
 
@@ -24,7 +22,7 @@ namespace ConsMenu {
 
 
 
-    SelectResult::SelectResult(short int _row = 1, int _width = 1, int _result = 1) {
+    SelectResult::SelectResult(short int _row, int _width, int _result) {
         this->row = _row;
         this->width = _width;
         this->result = _result;
@@ -56,7 +54,7 @@ namespace ConsMenu {
         return display_strs;
     };
 
-    SelectResult SelectMenu::ask_response(bool show_invalid = false) {
+    SelectResult SelectMenu::ask_response(bool show_invalid) {
         Console::clear_console();
         Menu::show_header();
 

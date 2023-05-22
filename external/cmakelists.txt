@@ -1,0 +1,4 @@
+add_subdirectory(cpputils)
+include_directories(cpputils/include)
+
+target_link_libraries(cppconsmenu cpputils)

@@ -3,20 +3,13 @@
 
 
 
-#include "../cpp_utils/_init.hpp"
+#include "cppconsmenu.hpp"
 
 
 namespace ConsMenu {
-    /*
-    Represents a screen. This is something that is displayed to the console.
-    */
-    class Screen {
-        public:
-            // Shows the screen.
-            virtual void show() {
-                Console::clear_console();
-            }
-    };
+    void Screen::show() {
+        Console::clear_console();
+    }
 }
 
 
