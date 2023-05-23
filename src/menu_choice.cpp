@@ -1,8 +1,3 @@
-#ifndef MENU_CHOICE
-#define MENU_CHOICE
-
-
-
 #include <iostream>
 #include <stdio.h>
 #include <string>
@@ -144,64 +139,69 @@ namespace ConsMenu {
                 Console::flush_streams();
             } catch (MenuExc::MenuChExit) {
                 Console::flush_streams();
-
-                Console::Color::SpecStyle pixel_specstyle = Console::Color::SpecStyle(
-                    false,
-                    Console::Color::red,
-                    Console::Color::black,
-                    true
-                );
-
-                Console::Anim::CornerPixelate(0.1, pixel_specstyle).run();
-                sleep(1);
+                this->anim_exit_menu();
                 break;
             } catch (MenuExc::MenuExit exc) {
                 Console::flush_streams();
-
-                Console::Color::SpecStyle pixel_specstyle = Console::Color::SpecStyle(
-                    false,
-                    Console::Color::red,
-                    Console::Color::red,
-                    true
-                );
-
-                Console::Anim::CornerPixelate(0.5, pixel_specstyle).run();
-                sleep(1);
+                this->anim_exit_program();
                 throw exc;
             };
 
 
-            Console::Color::SpecStyle bar_specstyle = Console::Color::SpecStyle(
-                false,
-                Console::Color::green,
-                Console::Color::black,
-                true
-            );
-            Console::Anim::BarHighlight(0.5, response.row, response.width - 1, "=", bar_specstyle).run();
-
-            sleep(1);
-
-            Console::Color::SpecStyle wipe_specstyle = Console::Color::SpecStyle(
-                false,
-                Console::Color::light_green,
-                Console::Color::blue,
-                true
-            );
-            Console::Anim::WipeScreen(0.02, "███", wipe_specstyle, true).run();
-
-
-            sleep(1);
+            this->anim_chosen(response);
 
             Console::clear_console();
             this->choices[response.result]->screen->show();
         }
+    }
+
+    void SelectMenu::anim_start() {};
+    void SelectMenu::anim_chosen(SelectResult result) {
+        Console::Color::SpecStyle bar_specstyle = Console::Color::SpecStyle(
+            false,
+            Console::Color::green,
+            Console::Color::black,
+            true
+        );
+        Console::Anim::BarHighlight(0.5, result.row, result.width - 1, "=", bar_specstyle).run();
+
+        sleep(1);
+
+        Console::Color::SpecStyle wipe_specstyle = Console::Color::SpecStyle(
+            false,
+            Console::Color::light_green,
+            Console::Color::blue,
+            true
+        );
+        Console::Anim::WipeScreen(0.02, "███", wipe_specstyle, true).run();
+
+
+        sleep(1);
+    }
+    void SelectMenu::anim_exit_menu() {
+        Console::Color::SpecStyle pixel_specstyle = Console::Color::SpecStyle(
+            false,
+            Console::Color::red,
+            Console::Color::black,
+            true
+        );
+
+        Console::Anim::CornerPixelate(0.1, pixel_specstyle).run();
+        sleep(1);
+    }
+    void SelectMenu::anim_exit_program() {
+        Console::Color::SpecStyle pixel_specstyle = Console::Color::SpecStyle(
+            false,
+            Console::Color::red,
+            Console::Color::red,
+            true
+        );
+
+        Console::Anim::CornerPixelate(0.5, pixel_specstyle).run();
+        sleep(1);
     }
     std::string SelectMenu::back_tag = "x";
     std::string SelectMenu::exit_tag = "xx";
     std::string SelectMenu::tag_open_br = "[";
     std::string SelectMenu::tag_close_br = "]:";
 };
-
-
-
-#endif

@@ -166,9 +166,9 @@ namespace ConsMenu {
             /*
             Adds a choice.
             */
-            template <class T>
-            void add_choice() {
-                this->choices.push_back(std::make_unique<T>(T()));
+            template <class T, typename... Args>
+            void add_choice(Args... args) {
+                this->choices.push_back(std::make_unique<T>(T(args...)));
             }
 
             /*
@@ -195,6 +195,19 @@ namespace ConsMenu {
 
             // Asks the user, but with a loop. This catches invalid inputs then asks again.
             SelectResult ask_response_loop();
+
+
+            // Does an animation before the menu shows.
+            virtual void anim_start();
+
+            // Does an animation choice select.
+            virtual void anim_chosen(SelectResult result);
+
+            // Does an animation on menu exit.
+            virtual void anim_exit_menu();
+        
+            // Does an animation on program exit.
+            virtual void anim_exit_program();
 
             void show() override;
     };
