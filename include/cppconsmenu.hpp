@@ -112,6 +112,11 @@ namespace ConsMenu {
             std::unique_ptr<Screen> screen;
 
             Choice(std::string _description);
+
+            template <class T, typename... Args>
+            void set_screen(Args... constructor_args) {
+                this->screen = std::make_unique<T>(T(constructor_args...));
+            }
     };
 
 
@@ -167,8 +172,8 @@ namespace ConsMenu {
             Adds a choice.
             */
             template <class T, typename... Args>
-            void add_choice(Args... args) {
-                this->choices.push_back(std::make_unique<T>(T(args...)));
+            void add_choice(Args... constructor_args) {
+                this->choices.push_back(std::make_unique<T>(T(constructor_args...)));
             }
 
             /*
