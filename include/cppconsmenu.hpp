@@ -210,9 +210,12 @@ namespace ConsMenu {
 
             // Does an animation on menu exit.
             virtual void anim_exit_menu();
-        
+
             // Does an animation on program exit.
             virtual void anim_exit_program();
+
+            // Called whenever the menu asks the user for the input.
+            virtual void on_ask();
 
             void show() override;
     };

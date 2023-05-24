@@ -135,6 +135,7 @@ namespace ConsMenu {
             Console::clear_console();
             SelectResult response;
             try {
+                this->on_ask();
                 response = this->ask_response_loop();
                 Console::flush_streams();
             } catch (MenuExc::MenuChExit) {
@@ -200,6 +201,9 @@ namespace ConsMenu {
         Console::Anim::CornerPixelate(0.5, pixel_specstyle).run();
         sleep(1);
     }
+
+    void SelectMenu::on_ask() {};
+
     std::string SelectMenu::back_tag = "x";
     std::string SelectMenu::exit_tag = "xx";
     std::string SelectMenu::tag_open_br = "[";
