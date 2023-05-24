@@ -109,9 +109,10 @@ namespace ConsMenu {
     class Choice {
         public:
             std::string description = "This is the default description.";
+            Console::Color::SpecStyle specstyle;
             std::unique_ptr<Screen> screen;
 
-            Choice(std::string _description);
+            Choice(std::string _description, Console::Color::SpecStyle spec_style = Console::Color::SpecStyle());
 
             template <class T, typename... Args>
             void set_screen(Args... constructor_args) {
@@ -156,6 +157,10 @@ namespace ConsMenu {
 
             // If true, this would hide the exit tag.
             bool is_main_menu = false;
+
+
+            // The color used on the tag.
+            Console::Color::SpecStyle tag_color = Console::Color::SpecStyle();
 
             // The text to display before the choices.
             std::string choice_text = "Please pick an appropriate choice:";

@@ -11,8 +11,9 @@
 
 
 namespace ConsMenu {
-    Choice::Choice(std::string _description) {
+    Choice::Choice(std::string _description, Console::Color::SpecStyle _specstyle) {
         this->description = _description;
+        this->specstyle = _specstyle;
     }
 
 
@@ -41,10 +42,16 @@ namespace ConsMenu {
 
     std::vector<std::string> SelectMenu::get_choices_display() {
         std::vector<std::string> display_strs;
+        Console::Color::SpecStyle default_specstyle{};
+
         for (size_t idx = 0; idx < this->choices.size(); idx++) {
             std::string choice = this->choices[idx]->description;
             std::string idx_str = std::to_string(idx + 1);
-            display_strs.push_back(add_style_to_tag(idx_str) + " " + choice);
+            display_strs.push_back(
+                this->tag_color.get_str() + add_style_to_tag(idx_str) +
+                " " +
+                this->choices[idx]->specstyle.get_str() + choice
+            );
         };
         return display_strs;
     };
@@ -85,7 +92,7 @@ namespace ConsMenu {
         std::cout
             << std::endl
             << std::endl
-            << Console::Color::SpecStyle(false, Console::Color::light_green, Console::Color::black, true).get_str()
+            << Console::Color::SpecStyle(false, Console::Color::bold_white, Console::Color::black, true).get_str()
                 << "[]> " << this->typing_color.get_str();
 
 
