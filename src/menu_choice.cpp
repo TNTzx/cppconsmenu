@@ -141,6 +141,9 @@ namespace ConsMenu {
         while (true) {
             Console::clear_console();
             SelectResult response;
+
+            for (std::unique_ptr<Choice>& choice : this->choices) choice->on_show();
+
             try {
                 this->on_ask();
                 response = this->ask_response_loop();

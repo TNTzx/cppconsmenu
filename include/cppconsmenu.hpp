@@ -118,6 +118,8 @@ namespace ConsMenu {
             void set_screen(Args... constructor_args) {
                 this->screen = std::make_unique<T>(T(constructor_args...));
             }
+
+            virtual void on_show() {}
     };
 
 
